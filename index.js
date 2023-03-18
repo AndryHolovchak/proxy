@@ -14,6 +14,10 @@ const proxy = http.createServer((req, res) => {
   // Create the proxy request to the Deezer API
   const proxyReq = https.request(targetUrl, (proxyRes) => {
     // Set the headers of the response
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     res.writeHead(proxyRes.statusCode, proxyRes.headers);
 
     // Pipe the response from the Deezer API to the client
